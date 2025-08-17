@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot App</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" /> <!--DataTable CSS-->
+	<link href="/css/table.css" rel="stylesheet" />
+</head>
+<body>
+	<!-- Fiksni header -->
+	<header class="bg-dark shadow-sm py-2 px-4" style="position: fixed; top: 0; left: 0; width: 100%; z-index: 1040;">
+	    <div class="d-flex justify-content-end">
+	        <small class="text-muted">Jove Ilica 154, Beograd 11000</small>
+	    </div>
+	</header>
+
+	<!-- Meni -->
+	<div class="container-fluid mt-4">
+        <div class="row">
+            <!-- Levi meni -->
+            <div class="col-2 bg-dark text-white" style="height: 100vh; position: fixed;">
+                <h4 class="mt-3">Izbor</h4>
+                <ul class="nav flex-column">
+					<li th:each="item : ${menuItems}" class="nav-item">
+					    <a class="nav-link text-white d-flex align-items-center" th:href="${item.url}">
+					        <i th:class="${item.icon}" th:classappend="'me-2'"></i>
+					        <span th:text="${item.label}"></span>
+					    </a>
+					</li>
+                </ul>
+            </div>
+			
+           <!--Forma za katedru--> 
+		   <div class="col-10 offset-2 mt-4">
+		   <div class="card-body">
+		              <form th:action="@{/ispit/save}" th:object="${dto}" method="POST">
+						<input type="hidden" th:field="*{id}" />
+						<div class="d-flex justify-content-between">
+						    <a href="/ispit" class="btn btn-secondary">Otkaži</a>
+						    <button type="submit" class="btn btn-primary">Sačuvaj</button>
+						  </div>
+						  
+						  <hr>
+			                  <div class="col-md-6 mb-3">
+			                      <label for="datumVremeOdrzavanja" class="form-label">Datum i vreme odrzavanja ispita</label>
+			                      <input type="datetime-local" id="datumVremeOdrzavanja" th:field="*{datumVremeOdrzavanja}" class="form-control" required="true"/>
+			                  </div>
+	
+							  <div class="col-md-6 mb-3">
+							      <label for="tipIspita" class="form-label">Tip ispita</label>
+							      <select id="tipIspita"
+							              th:field="*{tipIspita}"
+							              class="form-select"
+							              required>
+							          <option value="" disabled
+							                  th:selected="${dto.id == null}">-- Izaberi tip ispita --</option>
+							          <option th:each="tip : ${tipoviIspita}"
+							                  th:value="${tip.name()}"
+							                  th:text="${tip.name()}">
+							          </option>
+							      </select>
+							  </div>
+						  
+			                  <div class="col-md-6 mb-3">
+			                      <label for="napomena" class="form-label">Napomena</label>
+			                      <input type="text" id="napomena" th:field="*{napomena}" class="form-control" required="true"/>
+			                  </div>
+	
+							  <div class="col-md-6 mb-3">
+							      <label for="predmetFk" class="form-label">Predmet</label>
+							      <select id="predmetFk"
+							              th:field="*{predmetFk}"
+							              class="form-select"
+							              required>
+									  <option value="" disabled
+										  th:selected="${dto.predmetFk == null}">-- Izaberi predmet --</option>
+							          <option th:each="predmet : ${predmeti}"
+							                  th:value="${predmet.id}"
+							                  th:text="${predmet.naziv}">
+							          </option>
+							      </select>
+							  </div>
+
+
+		              </form>
+					  
+					  <!-- Forma za brisanje katedre, ispod glavne forme -->
+					  <form th:action="@{/ispit/delete}" method="post" th:if="${dto.id != null}" style="margin-top: 20px;">
+					      <input type="hidden" name="id" th:value="${dto.id}" />
+					      <button type="submit" class="btn btn-danger"
+					          onclick="return confirm('Da li ste sigurni da želite da obrišete ovaj ispit?');">
+					          Obriši
+					      </button>
+					  </form>
+					  
+				  </div>
+			      </div>	
+				  
+        </div>
+    </div>
+	
+	<!-- Fixed Footer -->
+	<footer class="text-center text-muted border-top pt-3"
+	        style="background-color: #f8f9fa; position: fixed; bottom: 0; left: 16.6667%; width: 83.3333%; z-index: 1000;">
+	    <p class="mb-2">&copy; 2025 Faculty of Organizational Sciences, University of Belgrade</p>
+	</footer>
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+	<script>	
+	</script>
+	
+</body>
+</html>

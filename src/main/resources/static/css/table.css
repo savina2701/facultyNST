@@ -1,0 +1,40 @@
+thead {
+    background-color: #f5f1e9; /* krem boja */
+    color: #6b4c3b; /* tamnija zemljana nijansa za tekst */
+    font-weight: 700;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+table.dataTable tbody tr:hover {
+    background-color: #f0e6d2; /* svetlija krem nijansa za hover */
+    cursor: pointer;
+}
+
+.dataTables_filter input {
+    border-radius: 0.25rem;
+    border: 2px solid #bfa676; /* mekša zlatna ivica */
+    padding: 0.5rem 0.75rem;
+}
+
+.dataTables_length select {
+    border-radius: 0.25rem;
+    border: 2px solid #bfa676;
+    padding: 0.4rem 2rem 0.4rem 0.6rem;
+}
+
+.main-content {
+    margin-left: 16.6667%; /* jer je meni col-2, tj. 2/12 = 16.67% */
+    margin-top: 60px; /* da pomeriš ispod fiksnog headera */
+	max-width: calc(100% - 16.6667%); /* ograniči širinu da ne prelazi */
+	overflow-x: hidden; /* spreči da ceo deo skroluje horizontalno */
+}
+
+.table-responsive-wrapper {
+  overflow-x: auto; /* tabela može da skroluje horizontalno */
+  -webkit-overflow-scrolling: touch; /* glatki scroll na mobilnim */
+}
+
+input[readonly] {
+    background-color: #e9ecef;
+    opacity: 1;
+}
