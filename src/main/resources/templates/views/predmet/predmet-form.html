@@ -42,70 +42,74 @@
 						    <button type="submit" class="btn btn-primary">Sačuvaj</button>
 						  </div>
 						  <hr>
-		                  <div class="col-md-6 mb-3">
-		                      <label for="naziv" class="form-label">Naziv</label>
-		                      <input type="text" id="naziv" th:field="*{naziv}" class="form-control" required="true"/>
-		                  </div>
-
-		                  <div class="col-md-6 mb-3">
-		                      <label for="espb" class="form-label">ESPB</label>
-		                      <input type="number" id="espb" th:field="*{espb}" class="form-control" required="true"/>
-		                  </div>
-
-		                  <div class="col-md-6 mb-3">
-		                      <label for="sprgodinaStudija" class="form-label">Godina studija</label>
-		                      <input type="text" id="godinaStudija" th:field="*{godinaStudija}" class="form-control" required="true"/>
-		                  </div>
-
-		                  <div class="col-md-6 mb-3">
-		                      <label for="semestar" class="form-label">Semestar</label>
-		                      <input type="text" id="semestar" th:field="*{semestar}" class="form-control" required="true"/>
-		                  </div>
-
-		                  <div class="col-md-6 mb-3">
-		                      <label for="opis" class="form-label">Opis</label>
-		                      <input type="text" id="opis" th:field="*{opis}" class="form-control"/>
-		                  </div>
-
-		                  <!--<div class="mb-3">
-		                      <label for="obavezan" class="form-label">Obavezan</label>
-		                      <input type="text" id="obavezan" th:field="*{obavezan}" class="form-control" required="true"/>
-		                  </div>-->
 						  
-						  <div class="col-md-6 mb-3">
-						      <label for="obavezan" class="form-label">Vrsta predmeta</label>
-						      <select th:field="*{obavezan}" id="obavezan" class="form-select">
-						          <option th:value="true">Obavezan</option>
-						          <option th:value="false">Izborni</option>
-						      </select>
+						  <div class="row">
+			                  <div class="col-md-6 mb-3">
+			                      <label for="naziv" class="form-label">Naziv</label>
+			                      <input type="text" id="naziv" th:field="*{naziv}" class="form-control" required="true"/>
+			                  </div>
+	
+			                  <div class="col-md-6 mb-3">
+			                      <label for="espb" class="form-label">ESPB</label>
+			                      <input type="number" id="espb" th:field="*{espb}" class="form-control" required="true"/>
+			                  </div>
+	
+			                  <div class="col-md-6 mb-3">
+			                      <label for="sprgodinaStudija" class="form-label">Godina studija</label>
+			                      <input type="text" id="godinaStudija" th:field="*{godinaStudija}" class="form-control" required="true"/>
+			                  </div>
+
+			                  <div class="col-md-6 mb-3">
+			                      <label for="semestar" class="form-label">Semestar</label>
+			                      <input type="text" id="semestar" th:field="*{semestar}" class="form-control" required="true"/>
+			                  </div>
 						  </div>
-						  
-						  <!--<div class="mb-3">
-						      <label for="katedraFk" class="form-label">Katedra</label>
-						      <select id="katedraFk" th:field="*{katedraFk}" class="form-select" required>
-						          <option value="" disabled selected>-- Izaberi katedru --</option>
-						          <option th:each="katedra : ${katedre}"
-						                  th:value="${katedra.id}"
-						                  th:text="${katedra.naziv}">
-						          </option>
-						      </select>
-						  </div>-->
-						  
-						  <div class="col-md-6 mb-3">
-						      <label for="katedraFk" class="form-label">Katedra</label>
-
-						      <select id="katedraFk"
-						              th:field="*{katedraFk}"
-						              class="form-select"
-						              required>
-						          <option value="" disabled
-						                  th:selected="${dto.katedraFk == null}">-- Izaberi katedru --</option>
-						          <option th:each="katedra : ${katedre}"
-						                  th:value="${katedra.id}"
-						                  th:text="${katedra.naziv}">
-						          </option>
-						      </select>
-						  </div>
+						  <div class="row">
+			                  <div class="col-md-6 mb-3">
+			                      <label for="opis" class="form-label">Opis</label>
+			                      <input type="text" id="opis" th:field="*{opis}" class="form-control"/>
+			                  </div>
+	
+			                  <!--<div class="mb-3">
+			                      <label for="obavezan" class="form-label">Obavezan</label>
+			                      <input type="text" id="obavezan" th:field="*{obavezan}" class="form-control" required="true"/>
+			                  </div>-->
+							  
+							  <div class="col-md-6 mb-3">
+							      <label for="obavezan" class="form-label">Vrsta predmeta</label>
+							      <select th:field="*{obavezan}" id="obavezan" class="form-select">
+							          <option th:value="true">Obavezan</option>
+							          <option th:value="false">Izborni</option>
+							      </select>
+							  </div>
+							  
+							  <!--<div class="mb-3">
+							      <label for="katedraFk" class="form-label">Katedra</label>
+							      <select id="katedraFk" th:field="*{katedraFk}" class="form-select" required>
+							          <option value="" disabled selected>-- Izaberi katedru --</option>
+							          <option th:each="katedra : ${katedre}"
+							                  th:value="${katedra.id}"
+							                  th:text="${katedra.naziv}">
+							          </option>
+							      </select>
+							  </div>-->
+							  
+							  <div class="col-md-6 mb-3">
+							      <label for="katedraFk" class="form-label">Katedra</label>
+	
+							      <select id="katedraFk"
+							              th:field="*{katedraFk}"
+							              class="form-select"
+							              required>
+							          <option value="" disabled
+							                  th:selected="${dto.katedraFk == null}">-- Izaberi katedru --</option>
+							          <option th:each="katedra : ${katedre}"
+							                  th:value="${katedra.id}"
+							                  th:text="${katedra.naziv}">
+							          </option>
+							      </select>
+							  </div>
+					  	</div>  
 		              </form>
 					  
 					  <!-- Forma za brisanje katedre, ispod glavne forme -->
