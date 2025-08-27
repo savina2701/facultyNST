@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.14.xsd">
+         
+	<!-- Tabela: student -->
+    <changeSet id="1-create-student-table" author="savina">
+        <createTable tableName="student">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ime" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="prezime" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="broj_indeksa" type="VARCHAR(9)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="jmbg" type="VARCHAR(13)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="email" type="VARCHAR(50)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+            <column name="telefon" type="VARCHAR(50)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="pol" type="CHAR(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="godina_upisa" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <!-- Tabela predmet -->
+    <changeSet id="2-create-predmet-table" author="savina">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="predmet"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="predmet">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="naziv" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="espb" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="godina_studija" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="semestar" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="opis" type="VARCHAR(255)"/>
+            <column name="obavezan" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="katedra_fk" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_predmet_katedra"
+                             references="katedra(id)"/>
+            </column>
+        </createTable>
+    </changeSet>     
+         
+    <!-- Tabela ispit -->
+    <changeSet id="3-create-ispit-table" author="savina">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="ispit"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="ispit">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="datum_vreme_odrzavanja" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tip_ispita" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="napomena" type="VARCHAR(255)"/>
+            <column name="predmet_fk" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_ispit_predmet"
+                             references="predmet(id)"/>
+            </column>
+        </createTable>
+    </changeSet>   
+    
+    <!-- Tabela katedra -->
+    <changeSet id="4-create-katedra-table" author="savina">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="katedra"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="katedra">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="naziv" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="zgrada" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sprat" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="kabinet" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telefon" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="broj_zaposlenih" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+         
+    <!-- Tabela profesor -->
+    <changeSet id="5-create-profesor-table" author="savina">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="profesor"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="profesor">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ime" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="prezime" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="titula" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="katedra_fk" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_profesor_katedra"
+                             references="katedra(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+      
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+</databaseChangeLog>
